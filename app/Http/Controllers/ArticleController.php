@@ -10,7 +10,9 @@ class ArticleController extends Controller
     
     public function index()
     {
-        $article_list = ArtikelModel::all()->short_by('create_at');
+        $article_list = ArtikelModel::orderBy('created_at')->paginate(10);
+        // dd($article_list);
+        return view('pages.article.index', compact('article_list'));
     }
 
     public function create()
